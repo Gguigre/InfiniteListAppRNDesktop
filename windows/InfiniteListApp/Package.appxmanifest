@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="78bb46f9-8de2-41ab-a777-b5c26034eb98"
-    Publisher="CN=guillaumegremillet"
+    Name="033b9c89-4e37-4a16-98ed-b6de00996609"
+    Publisher="CN=Guigre"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="78bb46f9-8de2-41ab-a777-b5c26034eb98" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="033b9c89-4e37-4a16-98ed-b6de00996609" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>InfiniteListApp</DisplayName>
-    <PublisherDisplayName>guillaumegremillet</PublisherDisplayName>
+    <PublisherDisplayName>Guigre</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

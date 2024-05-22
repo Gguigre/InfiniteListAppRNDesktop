@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   ListRenderItem,
+  Image,
 } from 'react-native';
 import axios from 'axios';
 
@@ -54,8 +55,9 @@ const App: React.FC = () => {
     </View>
   );
 
-  const renderItem: ListRenderItem<Item> = ({item}) => (
+  const renderItem: ListRenderItem<Item> = ({item, index}) => (
     <View style={styles.item}>
+      <Image source={{ uri: `https://picsum.photos/id/${index}/100/100` }} style={{width: 100, height: 100}} />
       <Text style={styles.text}>Image by {item.author}</Text>
     </View>
   );
