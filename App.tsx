@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -21,10 +21,19 @@ const App: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [maxItems, setMaxItems] = useState<number>(1000);
+  const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
     fetchMoreData();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      autoScroll();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [items]);
 
   const fetchMoreData = async () => {
     if (isLoading || items.length >= maxItems) return;
@@ -45,6 +54,12 @@ const App: React.FC = () => {
     }
   };
 
+  const autoScroll = () => {
+    if (flatListRef.current && items.length > 0) {
+      flatListRef.current.scrollToEnd({animated: true});
+    }
+  };
+
   const renderFooter = () => (
     <View style={styles.footer}>
       {isLoading ? (
@@ -57,13 +72,17 @@ const App: React.FC = () => {
 
   const renderItem: ListRenderItem<Item> = ({item, index}) => (
     <View style={styles.item}>
-      <Image source={{ uri: `https://picsum.photos/id/${index}/100/100` }} style={{width: 100, height: 100}} />
+      <Image
+        source={{uri: `https://picsum.photos/id/${index}/100/100`}}
+        style={{width: 100, height: 100}}
+      />
       <Text style={styles.text}>Image by {item.author}</Text>
     </View>
   );
 
   return (
     <FlatList
+      ref={flatListRef}
       data={items}
       renderItem={renderItem}
       keyExtractor={item => item.id}
